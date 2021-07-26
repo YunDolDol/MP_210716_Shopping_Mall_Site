@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} 상품 수정 {% endblock %}
+{% block link %} {% static 'css/base.css' %} {% endblock %}
+{% block content %}
+    <h1>상품 수정</h1> <br>
+
+    <form action="{% url 'update' shopping.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>상품 이름 : <input type="text" name="title" value="{{ shopping.title }}"></p>
+        <p>상품 이미지 : <input type="file" name="image" value="{{ shopping.image }}"></p>
+        <p>상품 설명 : <input type="text" name="body" value="{{ shopping.body }}" cols="30" row="30"></p>
+        <button type="submit">수정하기</button>
+    </form>
+{% endblock %}

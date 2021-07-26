@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} 홈화면 {% endblock %}
+{% block link %} {% static 'css/base.css' %} {% endblock %}
+{% block content %}
+    {% if user.is_authenticated %}
+    {{user.username}}
+    {% endif %}
+    <h1>상품페이지</h1>
+    {% for a in shoppings %}
+    <div>
+        {% if a.image %}
+        <a href="{% url 'detail' a.id %}"><img src="{{ a.image.url }}" width="250" height="250" alt="안나와요"></a>
+        {% endif %}
+    </div>
+    <hr>
+    {% endfor %}
+{% endblock %}
+ 
+
+
+

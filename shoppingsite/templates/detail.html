@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} 상품 설명 {% endblock %}
+{% block link %} {% static 'css/base.css' %} {% endblock %}
+{% block content %}
+    <h1>상품 설명</h1> <br>
+
+    <h2>상품 제목 : {{ shopping.title }}</h2>
+    <h2>상품 작성자 : {{ shopping.author }}</h2>
+    {% if shopping.image %}
+        <p><img src="{{ shopping.image.url }}" width="500" height="500" alt="안나와요" /></p>
+    {% endif %}
+    <h5>상품 설명 : {{ shopping.body }}</h5>
+    <a href="#"><input type="button" vaule="주문하기"></a>
+    {% if user == shopping.author %}
+    <a href="{% url 'update' shopping.id %}"><input type="button" value="수정하기"></a>
+    <a href="{% url 'delete' shopping.id %}"><input type="button" value="삭제하기"></a>
+    {% endif %}
+{% endblock %}
+    
+</body>
+</html>
