@@ -12,7 +12,7 @@
         <p><img src="{{ shopping.image.url }}" width="500" height="500" alt="안나와요" /></p>
     {% endif %}
     <h5>상품 설명 : {{ shopping.body }}</h5>
-    <a href="#"><input type="button" vaule="주문하기"></a>
+    <a href="{% url 'order' %}"><input type="button" vaule="주문하기"></a>
     {% if user == shopping.author %}
     <a href="{% url 'update' shopping.id %}"><input type="button" value="수정하기"></a>
     <a href="{% url 'delete' shopping.id %}"><input type="button" value="삭제하기"></a>

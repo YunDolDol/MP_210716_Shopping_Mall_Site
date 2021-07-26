@@ -14,8 +14,22 @@
         <a href="{% url 'detail' a.id %}"><img src="{{ a.image.url }}" width="250" height="250" alt="안나와요"></a>
         {% endif %}
     </div>
-    <hr>
     {% endfor %}
+
+    <div id='nav'>
+        {% if shoppings.has_previous %}
+        <a href='?page={{ shoppings.previous_page_number }}'><</a>
+        {% endif %}
+
+        <span>{{ shoppings.number }}</span>
+        <span>/</span>
+        <span>{{ shoppings.paginator.num_pages }}</span>
+
+        {% if shoppings.has_next %}
+        <a href='?page={{ shoppings.next_page_number }}'>></a>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
  
 

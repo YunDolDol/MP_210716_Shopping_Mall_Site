@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} 검색 {% endblock %}
+{% block link %} {% static 'css/base.css' %} {% endblock %}
+{% block content %}
+
+    {% for search in searchs %}
+        <div class="card_container">
+            <h3 class="card_title">{{ search.title }}</h3>
+            <p class='card_body'>{{ search.body }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

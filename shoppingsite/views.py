@@ -2,11 +2,15 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from django.utils import timezone
 from account.models import User
+from django.core.paginator import Paginator
+
 # Create your views here.
 
 def home (request) :
-
     shoppings = Shopping.objects.all()
+    paginator = Paginator(shoppings, 3)
+    page_number = request.GET.get('page')
+    shoppings = paginator.get_page(page_number)
 
     return render (request, 'home.html', {'shoppings':shoppings})
 
@@ -44,4 +48,24 @@ def delete (request, id) :
     delete_item.delete()
     return redirect('home')
 
-def order()
+def search(request) :
+    searchs = Shopping.objects.all()
+    search_text = request.GET.get('search_text')
+    if search_text:
+        searchs = searchs.filter(title__icontains = search_text)
+        return render(request, 'search.html', {'searchs': searchs})
+    
+    return render(request, 'search.html', {'searchs': searchs})
+
+def order(request) :
+    if request.method == 'POST' :
+
+        return ##
+    else :
+        ordering = Shopping.objects.get(id = id)
+        return render(request, 'order.html', )
+
+## 21.07.26 18:36 
+## 로그인 된 상태가 아니라면 주문하기을 눌렀을 때 로그인 페이지로 이동한다.
+## 주문하기 버튼을 누르면 로그인 된 유저의 주문 내역에 기록된다.
+## 요거 개발중이었음.
